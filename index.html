@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ماريوت ذمار للشقق الفندقية | Marriott Dhamar Hotel Apartments</title>
+
+  <!-- Google Fonts: Cairo & Tajawal (Arabic), Playfair Display & Inter (English) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Theme Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#080D1A',
+              900: '#0F172A',
+              800: '#17223B',
+              700: '#1E293B',
+            },
+            gold: {
+              300: '#E5C883',
+              400: '#D4AF37',
+              500: '#C9A255',
+              600: '#A88238',
+            },
+            alabaster: '#FAF9F6',
+          },
+          fontFamily: {
+            arabic: ['Cairo', 'Tajawal', 'sans-serif'],
+            english: ['Inter', 'sans-serif'],
+            serifEn: ['Playfair Display', 'serif'],
+          },
+          boxShadow: {
+            luxury: '0 20px 50px -15px rgba(15, 23, 42, 0.18)',
+            goldGlow: '0 10px 30px -10px rgba(201, 162, 85, 0.45)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Typography adaptation based on language direction */
+    html[dir="rtl"] body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+    }
+    html[dir="ltr"] body {
+      font-family: 'Inter', sans-serif;
+    }
+    html[dir="ltr"] .font-heading {
+      font-family: 'Playfair Display', serif;
+    }
+    html[dir="rtl"] .font-heading {
+      font-family: 'Cairo', sans-serif;
+    }
+
+    /* Smooth Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Subtle Hero Gradient Fallback */
+    .hero-bg {
+      background: linear-gradient(135deg, #080D1A 0%, #0F172A 50%, #1E293B 100%);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F172A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C9A255;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+
+<body class="bg-alabaster text-navy-900 antialiased overflow-x-hidden selection:bg-gold-500 selection:text-navy-950">
+
+  <!-- ==================== STICKY NAVIGATION BAR ==================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-navy-900/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-goldGlow text-navy-950 font-bold text-xl transition-transform duration-300 group-hover:scale-105">
+            <!-- Luxury Crown/Building Monogram SVG -->
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18" />
+              <path d="M5 21V7l7-4 7 4v14" />
+              <path d="M9 21v-6h6v6" />
+              <path d="M9 10h.01M15 10h.01" />
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <span class="block text-lg sm:text-xl font-bold text-white tracking-wide font-heading" data-i18n="brand_name">ماريوت ذمار</span>
+            <span class="block text-xs text-gold-300 tracking-wider font-medium" data-i18n="brand_sub">للشقق الفندقية</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-200">
+          <a href="#home" class="hover:text-gold-400 transition-colors py-2" data-i18n="nav_home">الرئيسية</a>
+          <a href="#units" class="hover:text-gold-400 transition-colors py-2" data-i18n="nav_units">الوحدات</a>
+          <a href="#amenities" class="hover:text-gold-400 transition-colors py-2" data-i18n="nav_amenities">المميزات</a>
+          <a href="#reviews" class="hover:text-gold-400 transition-colors py-2" data-i18n="nav_reviews">آراء النزلاء</a>
+          <a href="#booking" class="hover:text-gold-400 transition-colors py-2" data-i18n="nav_contact">الموقع والحجز</a>
+        </nav>
+
+        <!-- Actions: Language Switcher & Book Now -->
+        <div class="hidden md:flex items-center gap-3">
+          <button id="langToggleDesktop" type="button" onclick="toggleLanguage()" class="px-3.5 py-2 rounded-xl border border-white/20 text-slate-200 hover:border-gold-400 hover:text-gold-300 text-xs font-semibold tracking-wider transition-all flex items-center gap-1.5 cursor-pointer">
+            <svg class="w-4 h-4 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span class="lang-btn-label">EN</span>
+          </button>
+
+          <a href="#booking" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-300 text-navy-950 font-bold text-sm shadow-goldGlow transition-all duration-300 hover:-translate-y-0.5" data-i18n="nav_book_now">
+            احجز الآن
+          </a>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="flex md:hidden items-center gap-2">
+          <button type="button" onclick="toggleLanguage()" class="px-3 py-2 rounded-xl border border-white/20 text-slate-200 text-xs font-bold hover:border-gold-400 transition-colors">
+            <span class="lang-btn-label">EN</span>
+          </button>
+          <button id="mobileMenuBtn" type="button" aria-label="Menu" onclick="toggleMobileMenu()" class="p-2.5 rounded-xl bg-white/10 text-white hover:bg-white/20 transition-colors">
+            <svg id="menuIconOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menuIconClose" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-navy-900/98 border-t border-white/10 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
+      <a href="#home" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-gold-400 font-medium" data-i18n="nav_home">الرئيسية</a>
+      <a href="#units" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-gold-400 font-medium" data-i18n="nav_units">الوحدات</a>
+      <a href="#amenities" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-gold-400 font-medium" data-i18n="nav_amenities">المميزات</a>
+      <a href="#reviews" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-gold-400 font-medium" data-i18n="nav_reviews">آراء النزلاء</a>
+      <a href="#booking" onclick="closeMobileMenu()" class="block px-4 py-3 rounded-xl text-slate-200 hover:bg-white/5 hover:text-gold-400 font-medium" data-i18n="nav_contact">الموقع والحجز</a>
+      <div class="pt-2">
+        <a href="#booking" onclick="closeMobileMenu()" class="block w-full text-center px-5 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 text-navy-950 font-bold shadow-goldGlow" data-i18n="nav_book_now">
+          احجز الآن
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION & FLOATING QUICK-BOOKING BAR ==================== -->
+  <section id="home" class="relative min-h-screen flex flex-col justify-between pt-28 pb-12 hero-bg overflow-hidden">
+    <!-- Background Luxury Interior Image with Dark Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1920&q=85"
+        alt="Marriott Dhamar Luxury Interior"
+        onerror="this.style.display='none'"
+        class="w-full h-full object-cover object-center opacity-45 scale-105"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-900/75 to-navy-950/95"></div>
+      <!-- Subtle Decorative Gold Glow -->
+      <div class="absolute top-1/4 start-1/2 -translate-x-1/2 w-[36rem] h-[36rem] bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    </div>
+
+    <!-- Hero Center Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center py-10 sm:py-16">
+      <div class="max-w-3xl">
+        <!-- Gold Accent Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/15 border border-gold-400/35 text-gold-300 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-sm">
+          <span class="w-2 h-2 rounded-full bg-gold-400 animate-pulse"></span>
+          <span data-i18n="hero_badge">إقامة فندقية راقية في قلب ذمار</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight font-heading mb-6">
+          <span data-i18n="hero_title_1">فخامة الضيافة وراحة</span>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500" data-i18n="hero_title_2">الشقق الفندقية</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl" data-i18n="hero_subtitle">
+          نقدم لك تجربة سكنية متكاملة تجمع بين الخصوصية العائلية، التصميم العصري الأنيق، والخدمات الفندقية المتواصلة على مدار الساعة في مدينة ذمار.
+        </p>
+
+        <!-- Primary CTAs -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#units" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-300 text-navy-950 font-bold text-sm sm:text-base shadow-goldGlow transition-all duration-300 hover:-translate-y-0.5 flex items-center gap-2">
+            <span data-i18n="hero_cta_units">استكشف الوحدات</span>
+            <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          <a href="#booking" class="px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm sm:text-base backdrop-blur-md transition-all duration-300 flex items-center gap-2">
+            <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span data-i18n="hero_cta_location">الموقع والحجز السريع</span>
+          </a>
+        </div>
+
+        <!-- Quick Trust Stats -->
+        <div class="mt-10 pt-8 border-t border-white/10 grid grid-cols-3 gap-4 max-w-lg">
+          <div>
+            <p class="text-2xl sm:text-3xl font-extrabold text-gold-400">4.7★</p>
+            <p class="text-xs sm:text-sm text-slate-300 mt-0.5" data-i18n="stat_rating">تقييم جوجل</p>
+          </div>
+          <div>
+            <p class="text-2xl sm:text-3xl font-extrabold text-white">24/7</p>
+            <p class="text-xs sm:text-sm text-slate-300 mt-0.5" data-i18n="stat_service">استقبال وكهرباء</p>
+          </div>
+          <div>
+            <p class="text-2xl sm:text-3xl font-extrabold text-white">100%</p>
+            <p class="text-xs sm:text-sm text-slate-300 mt-0.5" data-i18n="stat_privacy">خصوصية عائلية</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Glassmorphic Quick Booking Bar -->
+    <div class="relative z-20 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 mt-6">
+      <div class="bg-navy-800/80 backdrop-blur-xl border border-gold-400/30 rounded-2xl p-4 sm:p-6 shadow-2xl">
+        <form id="quickBookForm" onsubmit="handleQuickBooking(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+          
+          <!-- Unit Type -->
+          <div>
+            <label for="qbUnit" class="block text-xs font-semibold text-gold-300 mb-1.5" data-i18n="label_unit_type">نوع الوحدة</label>
+            <select id="qbUnit" class="w-full px-3.5 py-3 rounded-xl bg-navy-900/90 border border-white/15 text-white text-sm focus:border-gold-400 focus:outline-none">
+              <!-- Populated dynamically via JS for bilingual support -->
+            </select>
+          </div>
+
+          <!-- Check-in Date -->
+          <div>
+            <label for="qbCheckIn" class="block text-xs font-semibold text-gold-300 mb-1.5" data-i18n="label_checkin">تاريخ الوصول</label>
+            <input id="qbCheckIn" type="date" required class="w-full px-3.5 py-3 rounded-xl bg-navy-900/90 border border-white/15 text-white text-sm focus:border-gold-400 focus:outline-none [color-scheme:dark]" />
+          </div>
+
+          <!-- Check-out Date -->
+          <div>
+            <label for="qbCheckOut" class="block text-xs font-semibold text-gold-300 mb-1.5" data-i18n="label_checkout">تاريخ المغادرة</label>
+            <input id="qbCheckOut" type="date" required class="w-full px-3.5 py-3 rounded-xl bg-navy-900/90 border border-white/15 text-white text-sm focus:border-gold-400 focus:outline-none [color-scheme:dark]" />
+          </div>
+
+          <!-- Guests Count -->
+          <div>
+            <label for="qbGuests" class="block text-xs font-semibold text-gold-300 mb-1.5" data-i18n="label_guests">عدد النزلاء</label>
+            <select id="qbGuests" class="w-full px-3.5 py-3 rounded-xl bg-navy-900/90 border border-white/15 text-white text-sm focus:border-gold-400 focus:outline-none">
+              <!-- Populated dynamically via JS -->
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-300 text-navy-950 font-bold text-sm shadow-goldGlow transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
+            </svg>
+            <span data-i18n="btn_quick_whatsapp">احجز عبر واتساب</span>
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== UNITS & SUITES SHOWCASE ==================== -->
+  <section id="units" class="py-20 sm:py-28 bg-alabaster">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+        <span class="inline-block text-gold-600 font-bold text-xs sm:text-sm tracking-widest uppercase mb-2" data-i18n="units_eyebrow">إقامة مصممة لراحتك</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-heading mb-4" data-i18n="units_title">الوحدات والأجنحة الفندقية</h2>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed" data-i18n="units_subtitle">
+          اختر ما يناسب احتياجاتك من بين تشكيلة متنوعة من الشقق العائلية الواسعة، الأجنحة الملكية، والغرف الفندقية المجهزة بأعلى معايير النظافة والراحة.
+        </p>
+      </div>
+
+      <!-- Interactive Filter Tabs -->
+      <div id="filterTabs" class="flex flex-wrap justify-center gap-2.5 sm:gap-3 mb-12 reveal">
+        <button type="button" onclick="setUnitFilter('all')" data-filter="all" class="filter-btn px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer bg-navy-900 text-gold-400 shadow-md" data-i18n="filter_all">الكل</button>
+        <button type="button" onclick="setUnitFilter('family')" data-filter="family" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer bg-white text-navy-800 border border-slate-200 hover:border-gold-400" data-i18n="filter_family">شقق عائلية</button>
+        <button type="button" onclick="setUnitFilter('royal')" data-filter="royal" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer bg-white text-navy-800 border border-slate-200 hover:border-gold-400" data-i18n="filter_royal">أجنحة ملكية</button>
+        <button type="button" onclick="setUnitFilter('rooms')" data-filter="rooms" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer bg-white text-navy-800 border border-slate-200 hover:border-gold-400" data-i18n="filter_rooms">غرف فندقية</button>
+      </div>
+
+      <!-- Units Grid (Rendered via JS) -->
+      <div id="unitsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Unit cards dynamically rendered here -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== KEY AMENITIES & VALUE PROPS ==================== -->
+  <section id="amenities" class="py-20 sm:py-28 bg-navy-900 text-white relative overflow-hidden">
+    <!-- Subtle Decorative Accents -->
+    <div class="absolute top-0 end-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 start-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+        <span class="inline-block text-gold-400 font-bold text-xs sm:text-sm tracking-widest uppercase mb-2" data-i18n="amenities_eyebrow">لماذا ماريوت ذمار؟</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading mb-4" data-i18n="amenities_title">مميزات الإقامة والخدمات</h2>
+        <p class="text-slate-300 text-sm sm:text-base leading-relaxed" data-i18n="amenities_subtitle">
+          نهتم بأدق التفاصيل التي تضمن لك ولعائلتك إقامة هادئة، آمنة، ومريحة دون أي قلق طوال فترة زيارتكم لمدينة ذمار.
+        </p>
+      </div>
+
+      <!-- 6-Card Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        
+        <!-- Amenity 1: 24/7 Power & Solar -->
+        <div class="reveal bg-navy-800/80 border border-white/10 hover:border-gold-400/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/15 text-gold-400 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors duration-300">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2" data-i18n="am_1_title">كهرباء وطاقة شمسية 24/7</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="am_1_desc">منظومة طاقة شمسية متكاملة ومولدات احتياطية تضمن استمرار الكهرباء والمياه الساخنة دون انقطاع.</p>
+        </div>
+
+        <!-- Amenity 2: High-Speed Wi-Fi -->
+        <div class="reveal bg-navy-800/80 border border-white/10 hover:border-gold-400/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/15 text-gold-400 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors duration-300">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2" data-i18n="am_2_title">إنترنت عالي السرعة</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="am_2_desc">تغطية Wi-Fi مجانية ومستقرة في جميع الشقق والأجنحة والمرافق لمتابعة أعمالك وتواصلك بكل سلاسة.</p>
+        </div>
+
+        <!-- Amenity 3: Secure Parking -->
+        <div class="reveal bg-navy-800/80 border border-white/10 hover:border-gold-400/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/15 text-gold-400 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors duration-300">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2" data-i18n="am_3_title">مواقف سيارات آمنة</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="am_3_desc">مواقف مخصصة ومراقبة بكاميرات أمنية وحراسة مستمرة لتوفير أقصى درجات الأمان لسيارتك.</p>
+        </div>
+
+        <!-- Amenity 4: 24/7 Reception & Room Service -->
+        <div class="reveal bg-navy-800/80 border border-white/10 hover:border-gold-400/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/15 text-gold-400 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors duration-300">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2" data-i18n="am_4_title">استقبال وخدمة غرف 24 ساعة</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="am_4_desc">فريق ضيافة محترف وودود في خدمتك على مدار الساعة لتلبية جميع طلباتك بسرعة واهتمام.</p>
+        </div>
+
+        <!-- Amenity 5: Family Privacy & Security -->
+        <div class="reveal bg-navy-800/80 border border-white/10 hover:border-gold-400/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/15 text-gold-400 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors duration-300">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2" data-i18n="am_5_title">خصوصية تامة للعائلات</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="am_5_desc">بيئة هادئة ومحافظة مصممة خصيصاً لراحة العائلات والمغتربين مع مداخل ومصاعد مريحة.</p>
+        </div>
+
+        <!-- Amenity 6: Prime Central Location -->
+        <div class="reveal bg-navy-800/80 border border-white/10 hover:border-gold-400/50 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 group">
+          <div class="w-14 h-14 rounded-2xl bg-gold-500/15 text-gold-400 flex items-center justify-center mb-5 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors duration-300">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2" data-i18n="am_6_title">موقع استراتيجي في ذمار</h3>
+          <p class="text-slate-400 text-sm leading-relaxed" data-i18n="am_6_desc">سهولة الوصول إلى أهم الشوارع الرئيسية، المطاعم، الأسواق، والمرافق الحيوية في مدينة ذمار.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GUEST REVIEWS SECTION ==================== -->
+  <section id="reviews" class="py-20 sm:py-28 bg-alabaster">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header + Rating Summary Badge -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
+        <div class="max-w-xl">
+          <span class="inline-block text-gold-600 font-bold text-xs sm:text-sm tracking-widest uppercase mb-2" data-i18n="reviews_eyebrow">ثقة نزلائنا</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-heading mb-3" data-i18n="reviews_title">آراء وتقييمات النزلاء</h2>
+          <p class="text-slate-600 text-sm sm:text-base" data-i18n="reviews_subtitle">نفخر بثقة ضيوفنا من داخل اليمن والمغتربين الذين اختاروا ماريوت ذمار لإقامتهم.</p>
+        </div>
+
+        <!-- Google Maps Overall Rating Badge -->
+        <div class="inline-flex items-center gap-4 bg-white px-6 py-4 rounded-2xl shadow-luxury border border-slate-100 self-start md:self-auto">
+          <div class="text-center">
+            <span class="block text-3xl font-extrabold text-navy-900 leading-none">4.7</span>
+            <span class="text-xs text-slate-500 font-medium">/ 5.0</span>
+          </div>
+          <div class="h-10 w-px bg-slate-200"></div>
+          <div>
+            <div class="flex items-center gap-0.5 text-gold-400 mb-1">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <p class="text-xs font-bold text-navy-800" data-i18n="reviews_google_label">تقييم متميز على خرائط جوجل</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Review Cards (Rendered via JS for bilingual support) -->
+      <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <!-- Dynamically rendered -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE WHATSAPP BOOKING & LOCATION ==================== -->
+  <section id="booking" class="py-20 sm:py-28 bg-white border-t border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14 reveal">
+        <span class="inline-block text-gold-600 font-bold text-xs sm:text-sm tracking-widest uppercase mb-2" data-i18n="booking_eyebrow">حجز مباشر وسريع</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 font-heading mb-4" data-i18n="booking_title">احجز إقامتك عبر واتساب</h2>
+        <p class="text-slate-600 text-sm sm:text-base" data-i18n="booking_subtitle">
+          املأ بيانات الحجز أدناه وسنجهز لك رسالة حجز مرتبة ترسلها مباشرة لقسم الاستقبال عبر واتساب لتأكيد حجزك فوراً.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        
+        <!-- Column 1: Interactive Booking Form -->
+        <div class="lg:col-span-7 reveal bg-alabaster rounded-3xl p-6 sm:p-9 border border-slate-200/80 shadow-luxury">
+          <form id="mainBookingForm" onsubmit="handleMainBooking(event)" novalidate class="space-y-5">
+            
+            <!-- Error Banner (replaces alert) -->
+            <div id="formErrorBanner" class="hidden p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm font-medium flex items-center gap-2.5">
+              <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span id="formErrorText"></span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Full Name -->
+              <div>
+                <label for="bkName" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_fullname">الاسم الكامل *</label>
+                <input id="bkName" type="text" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all" data-i18n-placeholder="ph_fullname" placeholder="مثال: عبدالله محمد الحميري" />
+              </div>
+
+              <!-- Phone Number -->
+              <div>
+                <label for="bkPhone" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_phone">رقم الجوال / واتساب *</label>
+                <input id="bkPhone" type="tel" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all" data-i18n-placeholder="ph_phone" placeholder="77XXXXXXX" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Unit Type -->
+              <div>
+                <label for="bkUnit" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_unit_type">نوع الوحدة</label>
+                <select id="bkUnit" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+
+              <!-- Guests -->
+              <div>
+                <label for="bkGuests" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_guests">عدد النزلاء</label>
+                <select id="bkGuests" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <!-- Check-in -->
+              <div>
+                <label for="bkCheckIn" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_checkin">تاريخ الوصول *</label>
+                <input id="bkCheckIn" type="date" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all" />
+              </div>
+
+              <!-- Check-out -->
+              <div>
+                <label for="bkCheckOut" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_checkout">تاريخ المغادرة *</label>
+                <input id="bkCheckOut" type="date" required class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all" />
+              </div>
+            </div>
+
+            <!-- Notes -->
+            <div>
+              <label for="bkNotes" class="block text-sm font-bold text-navy-900 mb-1.5" data-i18n="label_notes">ملاحظات إضافية (اختياري)</label>
+              <textarea id="bkNotes" rows="3" class="w-full px-4 py-3 rounded-xl bg-white border border-slate-300 text-navy-900 text-sm focus:border-gold-500 focus:ring-2 focus:ring-gold-400/20 focus:outline-none transition-all resize-none" data-i18n-placeholder="ph_notes" placeholder="مثال: وصول متأخر مساءً، طلب سرير إضافي، طابق منخفض..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-4 px-6 rounded-xl bg-navy-900 hover:bg-navy-800 text-gold-400 font-bold text-base shadow-luxury transition-all duration-300 hover:-translate-y-0.5 flex items-center justify-center gap-3 cursor-pointer">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
+              </svg>
+              <span data-i18n="btn_submit_booking">معاينة وإرسال الحجز عبر واتساب</span>
+            </button>
+
+          </form>
+        </div>
+
+        <!-- Column 2: Location & Contact Card -->
+        <div class="lg:col-span-5 reveal space-y-6">
+          <div class="bg-navy-900 text-white rounded-3xl p-7 sm:p-8 shadow-luxury relative overflow-hidden">
+            <div class="absolute -top-12 -end-12 w-40 h-40 bg-gold-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <h3 class="text-2xl font-bold font-heading text-gold-400 mb-6" data-i18n="loc_card_title">معلومات الموقع والتواصل</h3>
+
+            <div class="space-y-5 text-sm">
+              <!-- Address -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-white/10 text-gold-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-white mb-0.5" data-i18n="loc_address_label">العنوان</p>
+                  <p class="text-slate-300 leading-relaxed" data-i18n="loc_address_val">ماريوت ذمار للشقق الفندقية، مدينة ذمار، الجمهورية اليمنية</p>
+                </div>
+              </div>
+
+              <!-- Reception Hours -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-white/10 text-gold-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-white mb-0.5" data-i18n="loc_hours_label">ساعات الاستقبال</p>
+                  <p class="text-slate-300" data-i18n="loc_hours_val">مفتوح يومياً على مدار 24 ساعة (7 أيام في الأسبوع)</p>
+                </div>
+              </div>
+
+              <!-- Direct Contact -->
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-white/10 text-gold-400 flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold text-white mb-0.5" data-i18n="loc_phone_label">خدمة الحجوزات</p>
+                  <p class="text-slate-300" dir="ltr">+967 770 000 000 <span class="text-xs text-gold-300 ms-1" data-i18n="demo_num_note">(رقم تجريبي)</span></p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Visual Map Preview Card -->
+            <div class="mt-7 rounded-2xl overflow-hidden border border-white/15 bg-navy-800 relative group">
+              <div class="h-48 w-full relative flex items-center justify-center overflow-hidden bg-gradient-to-br from-navy-800 via-slate-800 to-navy-950">
+                <!-- Stylized Architectural Grid Map Pattern -->
+                <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <pattern id="mapGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+                      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#C9A255" stroke-width="0.6"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#mapGrid)" />
+                  <path d="M0 90 Q 120 60 250 110 T 500 85" fill="none" stroke="#D4AF37" stroke-width="2.5" stroke-dasharray="6 4" opacity="0.6"/>
+                  <path d="M180 0 L 210 220" fill="none" stroke="#94A3B8" stroke-width="2" opacity="0.35"/>
+                </svg>
+
+                <!-- Glowing Map Pin -->
+                <div class="relative z-10 flex flex-col items-center">
+                  <div class="w-14 h-14 rounded-full bg-gold-500/20 flex items-center justify-center animate-pulse">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 flex items-center justify-center shadow-goldGlow">
+                      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <span class="mt-2 px-3 py-1 rounded-full bg-navy-950/90 border border-gold-400/40 text-xs font-bold text-white shadow-lg" data-i18n="brand_name">ماريوت ذمار</span>
+                </div>
+              </div>
+
+              <!-- Open in Google Maps CTA -->
+              <a href="https://maps.app.goo.gl/fdmKL1LfhLjJKeoYA?g_st=ac" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-5 py-3.5 bg-white/5 hover:bg-gold-500 hover:text-navy-950 text-gold-300 font-bold text-sm transition-colors duration-300">
+                <span data-i18n="loc_open_maps">عرض الموقع على خرائط جوجل</span>
+                <svg class="w-4 h-4 rtl:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROFESSIONAL FOOTER ==================== -->
+  <footer class="bg-navy-950 text-slate-300 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+        
+        <!-- Brand Summary -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-navy-950 font-bold">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
+              </svg>
+            </div>
+            <div>
+              <span class="block text-lg font-bold text-white font-heading" data-i18n="brand_name">ماريوت ذمار</span>
+              <span class="block text-xs text-gold-400" data-i18n="brand_sub">للشقق الفندقية</span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed" data-i18n="footer_about">
+            وجهتك الأولى للإقامة الفندقية الفاخرة والمريحة في مدينة ذمار. شقق عائلية وأجنحة ملكية مجهزة بأعلى معايير النظافة والضيافة الأصيلة.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider" data-i18n="footer_links_title">روابط سريعة</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#home" class="hover:text-gold-400 transition-colors" data-i18n="nav_home">الرئيسية</a></li>
+            <li><a href="#units" class="hover:text-gold-400 transition-colors" data-i18n="nav_units">الوحدات والأجنحة</a></li>
+            <li><a href="#amenities" class="hover:text-gold-400 transition-colors" data-i18n="nav_amenities">المميزات والخدمات</a></li>
+            <li><a href="#reviews" class="hover:text-gold-400 transition-colors" data-i18n="nav_reviews">آراء النزلاء</a></li>
+            <li><a href="#booking" class="hover:text-gold-400 transition-colors" data-i18n="nav_contact">الموقع والحجز</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Details -->
+        <div>
+          <h4 class="text-white font-bold mb-4 text-sm uppercase tracking-wider" data-i18n="footer_contact_title">تواصل معنا</h4>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li class="flex items-center gap-2.5">
+              <span class="text-gold-400">📍</span>
+              <span data-i18n="loc_city">ذمار، الجمهورية اليمنية</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <span class="text-gold-400">🕒</span>
+              <span data-i18n="loc_hours_short">استقبال 24 ساعة يومياً</span>
+            </li>
+            <li>
+              <a href="https://maps.app.goo.gl/fdmKL1LfhLjJKeoYA?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-gold-400 hover:text-gold-300 font-semibold mt-1">
+                <span data-i18n="loc_open_maps">عرض الموقع على خرائط جوجل</span>
+                <span>↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p data-i18n="footer_copy">© 2026 ماريوت ذمار للشقق الفندقية. جميع الحقوق محفوظة.</p>
+        <p data-i18n="footer_demo">نسخة عرض تجريبية مصممة بعناية لتجربة ضيافة رقمية راقية</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== UNIT DETAILS MODAL ==================== -->
+  <div id="unitModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-950/80 backdrop-blur-sm" onclick="closeModalOnBackdrop(event, 'unitModal')">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 animate-fadeIn">
+      <div class="relative h-64 sm:h-72 bg-navy-900">
+        <img id="modalUnitImg" src="" alt="" class="w-full h-full object-cover" />
+        <button type="button" onclick="closeUnitModal()" aria-label="Close" class="absolute top-4 end-4 w-10 h-10 rounded-full bg-navy-950/70 hover:bg-navy-950 text-white flex items-center justify-center backdrop-blur-md transition-colors cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <span id="modalUnitBadge" class="absolute bottom-4 start-4 px-3.5 py-1.5 rounded-full bg-gold-500 text-navy-950 text-xs font-extrabold shadow-md"></span>
+      </div>
+
+      <div class="p-6 sm:p-8">
+        <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+          <div>
+            <h3 id="modalUnitTitle" class="text-2xl font-extrabold text-navy-900 font-heading"></h3>
+            <p id="modalUnitCategory" class="text-sm text-gold-600 font-semibold mt-0.5"></p>
+          </div>
+          <div class="flex items-center gap-3 text-xs font-bold text-navy-800 bg-alabaster px-4 py-2.5 rounded-xl border border-slate-200">
+            <span id="modalUnitArea"></span>
+            <span class="text-slate-300">|</span>
+            <span id="modalUnitGuests"></span>
+            <span class="text-slate-300">|</span>
+            <span id="modalUnitBeds"></span>
+          </div>
+        </div>
+
+        <p id="modalUnitDesc" class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6"></p>
+
+        <h4 class="text-sm font-bold text-navy-900 mb-3" data-i18n="modal_features_title">مواصفات ومميزات الوحدة:</h4>
+        <ul id="modalUnitFeatures" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-8 text-sm text-slate-700">
+          <!-- Populated dynamically -->
+        </ul>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button id="modalQuickBookBtn" type="button" class="flex-1 py-3.5 px-6 rounded-xl bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-300 text-navy-950 font-bold text-sm shadow-goldGlow transition-all cursor-pointer" data-i18n="btn_book_this_unit">
+            اختيار هذه الوحدة للحجز
+          </button>
+          <button type="button" onclick="closeUnitModal()" class="py-3.5 px-6 rounded-xl bg-slate-100 hover:bg-slate-200 text-navy-900 font-semibold text-sm transition-colors cursor-pointer" data-i18n="btn_close">
+            إغلاق
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== WHATSAPP PREVIEW MODAL ==================== -->
+  <div id="waModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-950/80 backdrop-blur-sm" onclick="closeModalOnBackdrop(event, 'waModal')">
+    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+      <!-- Header -->
+      <div class="bg-navy-900 px-6 py-5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-white font-bold text-base" data-i18n="wa_modal_title">معاينة رسالة الحجز</h3>
+            <p class="text-xs text-slate-400" data-i18n="wa_modal_sub">جاهزة للإرسال المباشر عبر واتساب</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeWaModal()" aria-label="Close" class="text-slate-400 hover:text-white p-1 cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Message Preview Box -->
+      <div class="p-6">
+        <div class="bg-[#ECE5DD] rounded-2xl p-4 border border-slate-200 mb-5">
+          <div class="bg-[#DCF8C6] text-navy-900 rounded-xl p-4 text-sm whitespace-pre-line leading-relaxed shadow-sm font-medium" id="waPreviewText"></div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a id="waDirectLink" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm text-center shadow-lg transition-all flex items-center justify-center gap-2">
+            <span data-i18n="wa_btn_open">فتح واتساب وإرسال الطلب</span>
+            <span>↗</span>
+          </a>
+          <button type="button" onclick="copyWaMessage()" class="py-3.5 px-5 rounded-xl bg-slate-100 hover:bg-slate-200 text-navy-900 font-semibold text-sm transition-colors cursor-pointer" data-i18n="wa_btn_copy">
+            نسخ النص
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION ==================== -->
+  <div id="toast" class="fixed bottom-6 start-1/2 -translate-x-1/2 z-50 hidden px-5 py-3 rounded-2xl bg-navy-900 text-gold-300 border border-gold-400/40 shadow-2xl text-sm font-semibold items-center gap-2.5">
+    <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+    <span id="toastMessage"></span>
+  </div>
+
+  <!-- ==================== APPLICATION JAVASCRIPT ==================== -->
+  <script>
+    // =========================================================================
+    // 1. CONFIGURATION & STATE
+    // =========================================================================
+    const HOTEL_WHATSAPP_NUMBER = '967770000000'; // Replace with Marriott Dhamar official WhatsApp number
+    let currentLang = 'ar';
+    let currentFilter = 'all';
+    let currentWaMessageText = '';
+
+    // =========================================================================
+    // 2. BILINGUAL DICTIONARY (AR / EN)
+    // =========================================================================
+    const i18n = {
+      ar: {
+        brand_name: 'ماريوت ذمار',
+        brand_sub: 'للشقق الفندقية',
+        nav_home: 'الرئيسية',
+        nav_units: 'الوحدات',
+        nav_amenities: 'المميزات',
+        nav_reviews: 'آراء النزلاء',
+        nav_contact: 'الموقع والحجز',
+        nav_book_now: 'احجز الآن',
+
+        hero_badge: 'إقامة فندقية راقية في قلب ذمار',
+        hero_title_1: 'فخامة الضيافة وراحة',
+        hero_title_2: 'الشقق الفندقية',
+        hero_subtitle: 'نقدم لك تجربة سكنية متكاملة تجمع بين الخصوصية العائلية، التصميم العصري الأنيق، والخدمات الفندقية المتواصلة على مدار الساعة في مدينة ذمار.',
+        hero_cta_units: 'استكشف الوحدات',
+        hero_cta_location: 'الموقع والحجز السريع',
+        stat_rating: 'تقييم جوجل',
+        stat_service: 'استقبال وكهرباء',
+        stat_privacy: 'خصوصية عائلية',
+
+        label_unit_type: 'نوع الوحدة',
+        label_checkin: 'تاريخ الوصول',
+        label_checkout: 'تاريخ المغادرة',
+        label_guests: 'عدد النزلاء',
+        label_fullname: 'الاسم الكامل *',
+        label_phone: 'رقم الجوال / واتساب *',
+        label_notes: 'ملاحظات إضافية (اختياري)',
+        ph_fullname: 'مثال: عبدالله محمد الحميري',
+        ph_phone: '77XXXXXXX',
+        ph_notes: 'مثال: وصول متأخر مساءً، طلب سرير إضافي، طابق منخفض...',
+        btn_quick_whatsapp: 'احجز عبر واتساب',
+
+        units_eyebrow: 'إقامة مصممة لراحتك',
+        units_title: 'الوحدات والأجنحة الفندقية',
+        units_subtitle: 'اختر ما يناسب احتياجاتك من بين تشكيلة متنوعة من الشقق العائلية الواسعة، الأجنحة الملكية، والغرف الفندقية المجهزة بأعلى معايير النظافة والراحة.',
+        filter_all: 'الكل',
+        filter_family: 'شقق عائلية',
+        filter_royal: 'أجنحة ملكية',
+        filter_rooms: 'غرف فندقية',
+        btn_details: 'التفاصيل',
+        btn_quick_book: 'حجز سريع',
+        unit_sqm: 'م²',
+        unit_guests: 'نزلاء',
+        unit_beds: 'أسرّة',
+        unit_bed_single: 'سرير',
+
+        amenities_eyebrow: 'لماذا ماريوت ذمار؟',
+        amenities_title: 'مميزات الإقامة والخدمات',
+        amenities_subtitle: 'نهتم بأدق التفاصيل التي تضمن لك ولعائلتك إقامة هادئة، آمنة، ومريحة دون أي قلق طوال فترة زيارتكم لمدينة ذمار.',
+        am_1_title: 'كهرباء وطاقة شمسية 24/7',
+        am_1_desc: 'منظومة طاقة شمسية متكاملة ومولدات احتياطية تضمن استمرار الكهرباء والمياه الساخنة دون انقطاع.',
+        am_2_title: 'إنترنت عالي السرعة',
+        am_2_desc: 'تغطية Wi-Fi مجانية ومستقرة في جميع الشقق والأجنحة والمرافق لمتابعة أعمالك وتواصلك بكل سلاسة.',
+        am_3_title: 'مواقف سيارات آمنة',
+        am_3_desc: 'مواقف مخصصة ومراقبة بكاميرات أمنية وحراسة مستمرة لتوفير أقصى درجات الأمان لسيارتك.',
+        am_4_title: 'استقبال وخدمة غرف 24 ساعة',
+        am_4_desc: 'فريق ضيافة محترف وودود في خدمتك على مدار الساعة لتلبية جميع طلباتك بسرعة واهتمام.',
+        am_5_title: 'خصوصية تامة للعائلات',
+        am_5_desc: 'بيئة هادئة ومحافظة مصممة خصيصاً لراحة العائلات والمغتربين مع مداخل ومصاعد مريحة.',
+        am_6_title: 'موقع استراتيجي في ذمار',
+        am_6_desc: 'سهولة الوصول إلى أهم الشوارع الرئيسية، المطاعم، الأسواق، والمرافق الحيوية في مدينة ذمار.',
+
+        reviews_eyebrow: 'ثقة نزلائنا',
+        reviews_title: 'آراء وتقييمات النزلاء',
+        reviews_subtitle: 'نفخر بثقة ضيوفنا من داخل اليمن والمغتربين الذين اختاروا ماريوت ذمار لإقامتهم.',
+        reviews_google_label: 'تقييم متميز على خرائط جوجل',
+
+        booking_eyebrow: 'حجز مباشر وسريع',
+        booking_title: 'احجز إقامتك عبر واتساب',
+        booking_subtitle: 'املأ بيانات الحجز أدناه وسنجهز لك رسالة حجز مرتبة ترسلها مباشرة لقسم الاستقبال عبر واتساب لتأكيد حجزك فوراً.',
+        btn_submit_booking: 'معاينة وإرسال الحجز عبر واتساب',
+
+        loc_card_title: 'معلومات الموقع والتواصل',
+        loc_address_label: 'العنوان',
+        loc_address_val: 'ماريوت ذمار للشقق الفندقية، مدينة ذمار، الجمهورية اليمنية',
+        loc_hours_label: 'ساعات الاستقبال',
+        loc_hours_val: 'مفتوح يومياً على مدار 24 ساعة (7 أيام في الأسبوع)',
+        loc_phone_label: 'خدمة الحجوزات',
+        demo_num_note: '(رقم تجريبي)',
+        loc_open_maps: 'عرض الموقع على خرائط جوجل',
+        loc_city: 'ذمار، الجمهورية اليمنية',
+        loc_hours_short: 'استقبال 24 ساعة يومياً',
+
+        footer_about: 'وجهتك الأولى للإقامة الفندقية الفاخرة والمريحة في مدينة ذمار. شقق عائلية وأجنحة ملكية مجهزة بأعلى معايير النظافة والضيافة الأصيلة.',
+        footer_links_title: 'روابط سريعة',
+        footer_contact_title: 'تواصل معنا',
+        footer_copy: '© 2026 ماريوت ذمار للشقق الفندقية. جميع الحقوق محفوظة.',
+        footer_demo: 'نسخة عرض تجريبية مصممة بعناية لتجربة ضيافة رقمية راقية',
+
+        modal_features_title: 'مواصفات ومميزات الوحدة:',
+        btn_book_this_unit: 'اختيار هذه الوحدة للحجز',
+        btn_close: 'إغلاق',
+
+        wa_modal_title: 'معاينة رسالة الحجز',
+        wa_modal_sub: 'جاهزة للإرسال المباشر عبر واتساب',
+        wa_btn_open: 'فتح واتساب وإرسال الطلب',
+        wa_btn_copy: 'نسخ النص',
+
+        err_required: 'يرجى تعبئة الاسم الكامل، رقم الجوال، وتواريخ الوصول والمغادرة.',
+        err_dates: 'تاريخ المغادرة يجب أن يكون بعد تاريخ الوصول.',
+        toast_unit_selected: 'تم اختيار الوحدة في نموذج الحجز بالأسفل',
+        toast_quick_filled: 'تم نقل بياناتك لنموذج الحجز، أكمل الاسم ورقم الجوال للإرسال',
+        toast_copied: 'تم نسخ رسالة الحجز بنجاح!',
+      },
+      en: {
+        brand_name: 'Marriott Dhamar',
+        brand_sub: 'Hotel Apartments',
+        nav_home: 'Home',
+        nav_units: 'Units',
+        nav_amenities: 'Amenities',
+        nav_reviews: 'Reviews',
+        nav_contact: 'Location & Booking',
+        nav_book_now: 'Book Now',
+
+        hero_badge: 'Refined Hospitality in the Heart of Dhamar',
+        hero_title_1: 'Timeless Elegance &',
+        hero_title_2: 'Hotel Apartment Comfort',
+        hero_subtitle: 'Experience a complete residential stay combining family privacy, modern interior elegance, and 24/7 hotel services in Dhamar city.',
+        hero_cta_units: 'Explore Units',
+        hero_cta_location: 'Location & Quick Book',
+        stat_rating: 'Google Rating',
+        stat_service: 'Reception & Power',
+        stat_privacy: 'Family Privacy',
+
+        label_unit_type: 'Unit Type',
+        label_checkin: 'Check-in Date',
+        label_checkout: 'Check-out Date',
+        label_guests: 'Guests',
+        label_fullname: 'Full Name *',
+        label_phone: 'Phone / WhatsApp *',
+        label_notes: 'Additional Notes (Optional)',
+        ph_fullname: 'e.g. Abdullah Al-Himyari',
+        ph_phone: '+967 77XXXXXXX',
+        ph_notes: 'e.g. Late evening arrival, extra bed request, lower floor...',
+        btn_quick_whatsapp: 'Book via WhatsApp',
+
+        units_eyebrow: 'Designed For Your Comfort',
+        units_title: 'Suites & Hotel Apartments',
+        units_subtitle: 'Choose from our curated collection of spacious family apartments, royal suites, and executive hotel rooms crafted for cleanliness and serenity.',
+        filter_all: 'All',
+        filter_family: 'Family Apartments',
+        filter_royal: 'Royal Suites',
+        filter_rooms: 'Hotel Rooms',
+        btn_details: 'Details',
+        btn_quick_book: 'Quick Book',
+        unit_sqm: 'm²',
+        unit_guests: 'Guests',
+        unit_beds: 'Beds',
+        unit_bed_single: 'Bed',
+
+        amenities_eyebrow: 'Why Marriott Dhamar?',
+        amenities_title: 'Stay Amenities & Services',
+        amenities_subtitle: 'We care about every detail that guarantees a peaceful, secure, and effortless stay for you and your family in Dhamar.',
+        am_1_title: '24/7 Power & Solar Energy',
+        am_1_desc: 'Integrated solar power system and backup generators ensuring uninterrupted electricity and hot water around the clock.',
+        am_2_title: 'High-Speed Wi-Fi',
+        am_2_desc: 'Complimentary, reliable Wi-Fi coverage across all apartments, suites, and lounges to keep you connected effortlessly.',
+        am_3_title: 'Secure Parking',
+        am_3_desc: 'Dedicated parking monitored by security cameras and round-the-clock guards for complete peace of mind.',
+        am_4_title: '24/7 Reception & Room Service',
+        am_4_desc: 'A welcoming, professional hospitality team available 24 hours a day to assist with all your requests promptly.',
+        am_5_title: 'Total Family Privacy',
+        am_5_desc: 'A quiet, respectful environment specially designed for families and travelers with comfortable access and privacy.',
+        am_6_title: 'Prime Central Location',
+        am_6_desc: 'Convenient access to main roads, restaurants, markets, and key landmarks across Dhamar city.',
+
+        reviews_eyebrow: 'Trusted By Guests',
+        reviews_title: 'Guest Reviews & Ratings',
+        reviews_subtitle: 'We take pride in the trust of local guests and expats who choose Marriott Dhamar for their stay.',
+        reviews_google_label: 'Top Rated on Google Maps',
+
+        booking_eyebrow: 'Fast Direct Reservation',
+        booking_title: 'Reserve Your Stay via WhatsApp',
+        booking_subtitle: 'Fill in your booking details below to generate a neatly formatted reservation message ready to send directly to our reception via WhatsApp.',
+        btn_submit_booking: 'Preview & Send via WhatsApp',
+
+        loc_card_title: 'Location & Contact Info',
+        loc_address_label: 'Address',
+        loc_address_val: 'Marriott Dhamar Hotel Apartments, Dhamar City, Yemen',
+        loc_hours_label: 'Reception Hours',
+        loc_hours_val: 'Open Daily 24 Hours (7 Days a Week)',
+        loc_phone_label: 'Reservations Desk',
+        demo_num_note: '(Demo Number)',
+        loc_open_maps: 'Open in Google Maps',
+        loc_city: 'Dhamar, Republic of Yemen',
+        loc_hours_short: '24/7 Reception Desk',
+
+        footer_about: 'Your premier destination for refined and comfortable hotel apartment stays in Dhamar. Family apartments and royal suites built on cleanliness and authentic hospitality.',
+        footer_links_title: 'Quick Links',
+        footer_contact_title: 'Contact Us',
+        footer_copy: '© 2026 Marriott Dhamar Hotel Apartments. All rights reserved.',
+        footer_demo: 'Interactive hospitality demo crafted for an elevated digital presence',
+
+        modal_features_title: 'Unit Specifications & Amenities:',
+        btn_book_this_unit: 'Select This Unit to Book',
+        btn_close: 'Close',
+
+        wa_modal_title: 'Booking Message Preview',
+        wa_modal_sub: 'Ready to send directly via WhatsApp',
+        wa_btn_open: 'Open WhatsApp & Send',
+        wa_btn_copy: 'Copy Message',
+
+        err_required: 'Please fill in your full name, phone number, and check-in/check-out dates.',
+        err_dates: 'Check-out date must be after the check-in date.',
+        toast_unit_selected: 'Unit pre-selected in the booking form below',
+        toast_quick_filled: 'Details transferred! Enter your name and phone to confirm',
+        toast_copied: 'Booking message copied to clipboard!',
+      },
+    };
+
+    // =========================================================================
+    // 3. UNITS & REVIEWS DATA
+    // =========================================================================
+    const unitsData = [
+      {
+        id: 'royal-suite',
+        category: 'royal',
+        area: 110,
+        guests: 4,
+        beds: 2,
+        image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/900x600/0F172A/C9A255?text=Royal+Suite',
+        ar: {
+          title: 'الجناح الملكي الفاخر',
+          categoryLabel: 'أجنحة ملكية',
+          badge: 'الأكثر طلباً',
+          desc: 'جناح ملكي واسع بتصميم فندقي راقٍ يضم غرفة نوم رئيسية فاخرة، صالة استقبال رحبة، مطبخ تحضيري مجهز، وحمام فاخر.',
+          features: ['صالة جلوس ملكية مستقلة', 'مطبخ تحضيري متكامل', 'شاشة ذكية 55 بوصة', 'تكييف وتدفئة مركزية', 'إنترنت فائق السرعة', 'خدمة غرف أولوية 24/7'],
+        },
+        en: {
+          title: 'Luxury Royal Suite',
+          categoryLabel: 'Royal Suites',
+          badge: 'Most Popular',
+          desc: 'Expansive royal suite with refined hotel design featuring a master bedroom, generous living lounge, kitchenette, and luxury bathroom.',
+          features: ['Private Royal Living Lounge', 'Equipped Kitchenette', '55" Smart TV', 'Climate Control', 'High-Speed Wi-Fi', 'Priority 24/7 Room Service'],
+        },
+      },
+      {
+        id: 'family-3br',
+        category: 'family',
+        area: 145,
+        guests: 6,
+        beds: 4,
+        image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/900x600/0F172A/C9A255?text=3BR+Family+Apartment',
+        ar: {
+          title: 'شقة عائلية 3 غرف',
+          categoryLabel: 'شقق عائلية',
+          badge: 'خيار العائلات',
+          desc: 'شقة عائلية فسيحة مثالية للعائلات الكبيرة والمغتربين، تحتوي على 3 غرف نوم مريحة، صالة معيشة، مطبخ متكامل، وحمامين.',
+          features: ['3 غرف نوم مستقلة', 'مطبخ عائلي مجهز بالكامل', 'صالة معيشة وطعام واسعة', 'حمامان بتشطيب حديث', 'غسالة ملابس أوتوماتيك', 'خصوصية تامة وهدوء'],
+        },
+        en: {
+          title: '3-Bedroom Family Apartment',
+          categoryLabel: 'Family Apartments',
+          badge: 'Family Choice',
+          desc: 'Spacious family residence ideal for larger families and returning expats, offering 3 cozy bedrooms, living hall, full kitchen, and 2 bathrooms.',
+          features: ['3 Separate Bedrooms', 'Fully Equipped Family Kitchen', 'Spacious Living & Dining', '2 Modern Bathrooms', 'Automatic Washing Machine', 'Complete Family Privacy'],
+        },
+      },
+      {
+        id: 'family-2br',
+        category: 'family',
+        area: 105,
+        guests: 4,
+        beds: 3,
+        image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/900x600/0F172A/C9A255?text=2BR+Family+Apartment',
+        ar: {
+          title: 'شقة عائلية غرفتين',
+          categoryLabel: 'شقق عائلية',
+          badge: 'مناسبة للإقامات الطويلة',
+          desc: 'شقة عصرية متوازنة تجمع بين الراحة والعملية، مجهزة بغرفتي نوم، صالة عائلية دافئة، ومطبخ مجهز لراحتك اليومية.',
+          features: ['غرفتا نوم (رئيسية + ثنائية)', 'مطبخ مجهز بالأجهزة الأساسية', 'صالة جلوس عائلية', 'مياه ساخنة على مدار الساعة', 'إنترنت مجاني سريع', 'إطلالة هادئة'],
+        },
+        en: {
+          title: '2-Bedroom Family Apartment',
+          categoryLabel: 'Family Apartments',
+          badge: 'Long-Stay Ready',
+          desc: 'A balanced modern apartment blending comfort and practicality with two bedrooms, a cozy family lounge, and an equipped kitchen.',
+          features: ['2 Bedrooms (Master + Twin)', 'Equipped Kitchen', 'Cozy Family Lounge', '24/7 Hot Water', 'Complimentary High-Speed Wi-Fi', 'Quiet City View'],
+        },
+      },
+      {
+        id: 'honeymoon-suite',
+        category: 'royal',
+        area: 75,
+        guests: 2,
+        beds: 1,
+        image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/900x600/0F172A/C9A255?text=Honeymoon+Suite',
+        ar: {
+          title: 'جناح العرسان',
+          categoryLabel: 'أجنحة ملكية',
+          badge: 'تجهيز خاص',
+          desc: 'جناح رومانسي هادئ مصمم بذوق رفيع للمناسبات الخاصة والعرسان، مع سرير كينج فاخر وإضاءة دافئة وضيافة ترحيبية.',
+          features: ['سرير كينج فاخر', 'تجهيز وتنسيق خاص عند الطلب', 'ركن قهوة وشاي مجاني', 'إضاءة رومانسية هادئة', 'حمام عصري فسيح', 'خصوصية وهدوء تام'],
+        },
+        en: {
+          title: 'Honeymoon Suite',
+          categoryLabel: 'Royal Suites',
+          badge: 'Special Setup',
+          desc: 'A serene, tastefully designed suite for newlyweds and special occasions, featuring a plush king bed, warm ambiance, and welcome hospitality.',
+          features: ['Plush King-Size Bed', 'Special Setup on Request', 'Complimentary Coffee & Tea Corner', 'Warm Ambient Lighting', 'Spacious Modern Bathroom', 'Total Privacy & Calm'],
+        },
+      },
+      {
+        id: 'exec-studio',
+        category: 'rooms',
+        area: 48,
+        guests: 2,
+        beds: 1,
+        image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/900x600/0F172A/C9A255?text=Executive+Studio',
+        ar: {
+          title: 'استوديو تنفيذي',
+          categoryLabel: 'غرف فندقية',
+          badge: 'لرجال الأعمال',
+          desc: 'استوديو أنيق وعملي مخصص لرجال الأعمال والزيارات السريعة، يضم مكتب عمل مريح، ركن تحضير، وسرير فندقي مريح.',
+          features: ['مكتب عمل مريح ومضاء جيداً', 'إنترنت سريع ومستقر', 'ركن تحضير وميني بار', 'شاشة ذكية', 'خزنة أمانات شخصية', 'تنظيف يومي متاح'],
+        },
+        en: {
+          title: 'Executive Studio',
+          categoryLabel: 'Hotel Rooms',
+          badge: 'Business Choice',
+          desc: 'Sleek and functional studio tailored for business travelers and short trips, featuring a dedicated work desk, kitchenette nook, and hotel-grade bed.',
+          features: ['Dedicated Work Desk', 'Fast Stable Wi-Fi', 'Kitchenette Nook & Mini-Bar', 'Smart TV', 'In-Room Safe', 'Daily Housekeeping Available'],
+        },
+      },
+      {
+        id: 'deluxe-double',
+        category: 'rooms',
+        area: 38,
+        guests: 2,
+        beds: 2,
+        image: 'https://images.unsplash.com/photo-1595576508898-0ad5c879a061?auto=format&fit=crop&w=900&q=80',
+        fallback: 'https://placehold.co/900x600/0F172A/C9A255?text=Deluxe+Double+Room',
+        ar: {
+          title: 'غرفة ديلوكس مزدوجة',
+          categoryLabel: 'غرف فندقية',
+          badge: 'قيمة ممتازة',
+          desc: 'غرفة فندقية نظيفة وهادئة بسريرين منفصلين أو سرير مزدوج، مجهزة بكافة مستلزمات الراحة الفندقية لإقامة قصيرة مريحة.',
+          features: ['خيار سرير مزدوج أو سريرين', 'مفروشات فندقية نظيفة', 'حمام خاص بمياه ساخنة 24/7', 'شاشة مسطحة وواي فاي', 'كهرباء مستمرة', 'خدمة استقبال 24 ساعة'],
+        },
+        en: {
+          title: 'Deluxe Double Room',
+          categoryLabel: 'Hotel Rooms',
+          badge: 'Great Value',
+          desc: 'Spotless, peaceful hotel room with twin or double bedding, equipped with all essential hotel comforts for a restful short stay.',
+          features: ['Double or Twin Bed Option', 'Crisp Hotel Linens', 'Private Bath with 24/7 Hot Water', 'Flat-Screen TV & Wi-Fi', 'Uninterrupted Power', '24-Hour Reception'],
+        },
+      },
+    ];
+
+    const reviewsData = [
+      {
+        rating: 5,
+        ar: {
+          name: 'م. طارق الأهدل',
+          tag: 'إقامة عائلية',
+          date: 'منذ شهر',
+          text: 'ما شاء الله مستوى النظافة والترتيب ممتاز جداً مقارنة بأغلب الفنادق في ذمار. الكهرباء والمياه الساخنة شغالة طوال اليوم، والمكان هادئ وآمن جداً للعوائل.',
+        },
+        en: {
+          name: 'Eng. Tariq Al-Ahdal',
+          tag: 'Family Stay',
+          date: '1 month ago',
+          text: 'The cleanliness and organization are truly top-notch compared to most hotels in Dhamar. Electricity and hot water run 24/7, and the atmosphere is very peaceful and safe for families.',
+        },
+      },
+      {
+        rating: 5,
+        ar: {
+          name: 'أبو عمر الذماري',
+          tag: 'زائر مغترب',
+          date: 'منذ شهرين',
+          text: 'حجزت شقة غرفتين أثناء زيارتي من الخارج، الأثاث نظيف ومريح وتعامل طاقم الاستقبال راقٍ ومتعاون لأبعد حد. بالتأكيد سيكون خياري الدائم في كل زيارة.',
+        },
+        en: {
+          name: 'Abu Omar Al-Dhamari',
+          tag: 'Visiting Expat',
+          date: '2 months ago',
+          text: 'Booked a 2-bedroom apartment during my visit from abroad. The furniture is clean and comfortable, and the reception staff are exceptionally polite and helpful. Definitely my go-to place.',
+        },
+      },
+      {
+        rating: 4.5,
+        ar: {
+          name: 'سالم بن يحيى',
+          tag: 'رحلة عمل',
+          date: 'منذ 3 أشهر',
+          text: 'موقع ممتاز وقريب من الخدمات، الإنترنت جيد لمتابعة العمل، ومواقف السيارات آمنة ومرتبة. تجربة إقامة فندقية محترمة تستحق التقدير.',
+        },
+        en: {
+          name: 'Salem Bin Yahya',
+          tag: 'Business Trip',
+          date: '3 months ago',
+          text: 'Great central location close to everything, reliable Wi-Fi for remote work, and secure organized parking. A respectable hotel stay well worth recommending.',
+        },
+      },
+    ];
+
+    // =========================================================================
+    // 4. RENDERING FUNCTIONS (UNITS, REVIEWS, SELECTS)
+    // =========================================================================
+    function renderUnits() {
+      const grid = document.getElementById('unitsGrid');
+      const filtered = currentFilter === 'all'
+        ? unitsData
+        : unitsData.filter((u) => u.category === currentFilter);
+
+      const t = i18n[currentLang];
+
+      grid.innerHTML = filtered
+        .map((unit) => {
+          const info = unit[currentLang];
+          const bedWord = unit.beds === 1 ? t.unit_bed_single : t.unit_beds;
+          return `
+            <article class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-luxury transition-all duration-300 hover:-translate-y-1.5 flex flex-col group">
+              <!-- Image Container -->
+              <div class="relative h-56 sm:h-60 bg-navy-900 overflow-hidden">
+                <img
+                  src="${unit.image}"
+                  alt="${info.title}"
+                  loading="lazy"
+                  onerror="this.onerror=null;this.src='${unit.fallback}'"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent"></div>
+                <span class="absolute top-4 start-4 px-3.5 py-1 rounded-full bg-gold-500 text-navy-950 text-xs font-extrabold shadow-md">
+                  ${info.badge}
+                </span>
+                <span class="absolute bottom-3.5 start-4 text-xs font-semibold text-gold-300 bg-navy-950/70 backdrop-blur-sm px-3 py-1 rounded-lg border border-white/10">
+                  ${info.categoryLabel}
+                </span>
+              </div>
+
+              <!-- Card Body -->
+              <div class="p-6 flex-1 flex flex-col">
+                <h3 class="text-xl font-bold text-navy-900 font-heading mb-2">${info.title}</h3>
+                <p class="text-slate-600 text-sm leading-relaxed mb-5 line-clamp-2 flex-1">${info.desc}</p>
+
+                <!-- Key Specs Row -->
+                <div class="grid grid-cols-3 gap-2 py-3 px-3 rounded-2xl bg-alabaster border border-slate-200/70 text-xs font-semibold text-navy-800 mb-5">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <svg class="w-4 h-4 text-gold-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                    <span>${unit.area} ${t.unit_sqm}</span>
+                  </div>
+                  <div class="flex items-center justify-center gap-1.5 border-x border-slate-200">
+                    <svg class="w-4 h-4 text-gold-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>${unit.guests} ${t.unit_guests}</span>
+                  </div>
+                  <div class="flex items-center justify-center gap-1.5">
+                    <svg class="w-4 h-4 text-gold-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>${unit.beds} ${bedWord}</span>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="grid grid-cols-2 gap-3">
+                  <button type="button" onclick="openUnitModal('${unit.id}')" class="py-2.5 px-4 rounded-xl border border-navy-900/20 hover:border-navy-900 text-navy-900 font-bold text-sm transition-colors cursor-pointer">
+                    ${t.btn_details}
+                  </button>
+                  <button type="button" onclick="selectUnitForBooking('${unit.id}')" class="py-2.5 px-4 rounded-xl bg-navy-900 hover:bg-gold-500 text-gold-400 hover:text-navy-950 font-bold text-sm transition-all duration-300 cursor-pointer">
+                    ${t.btn_quick_book}
+                  </button>
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+    }
+
+    function renderReviews() {
+      const grid = document.getElementById('reviewsGrid');
+      grid.innerHTML = reviewsData
+        .map((rev) => {
+          const info = rev[currentLang];
+          const starsCount = Math.floor(rev.rating);
+          const starsHtml = Array(starsCount)
+            .fill(
+              '<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>'
+            )
+            .join('');
+
+          return `
+            <div class="bg-white rounded-3xl p-7 border border-slate-200/80 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center gap-0.5 text-gold-400">${starsHtml}</div>
+                  <span class="text-xs text-slate-400 font-medium">${info.date}</span>
+                </div>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">"${info.text}"</p>
+              </div>
+              <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+                <div class="w-10 h-10 rounded-full bg-navy-900 text-gold-400 font-bold flex items-center justify-center text-sm shrink-0">
+                  ${info.name.charAt(0)}
+                </div>
+                <div>
+                  <p class="font-bold text-navy-900 text-sm">${info.name}</p>
+                  <p class="text-xs text-gold-600 font-semibold">${info.tag}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+    }
+
+    function populateDropdowns() {
+      const unitSelects = [document.getElementById('qbUnit'), document.getElementById('bkUnit')];
+      const guestSelects = [document.getElementById('qbGuests'), document.getElementById('bkGuests')];
+
+      unitSelects.forEach((select) => {
+        const prevVal = select.value;
+        select.innerHTML = unitsData
+          .map((u) => `<option value="${u.id}">${u[currentLang].title}</option>`)
+          .join('');
+        if (prevVal && unitsData.some((u) => u.id === prevVal)) {
+          select.value = prevVal;
+        }
+      });
+
+      const guestOptions =
+        currentLang === 'ar'
+          ? ['1 نزيل', '2 نزلاء', '3 نزلاء', '4 نزلاء', '5 نزلاء', '6+ نزلاء (عائلة)']
+          : ['1 Guest', '2 Guests', '3 Guests', '4 Guests', '5 Guests', '6+ Guests (Family)'];
+
+      guestSelects.forEach((select) => {
+        const prevIndex = select.selectedIndex >= 0 ? select.selectedIndex : 1;
+        select.innerHTML = guestOptions
+          .map((label, idx) => `<option value="${idx + 1}">${label}</option>`)
+          .join('');
+        select.selectedIndex = prevIndex;
+      });
+    }
+
+    // =========================================================================
+    // 5. FILTER & LANGUAGE SWITCHING
+    // =========================================================================
+    function setUnitFilter(category) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-btn').forEach((btn) => {
+        const isActive = btn.dataset.filter === category;
+        if (isActive) {
+          btn.className = 'filter-btn px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer bg-navy-900 text-gold-400 shadow-md';
+        } else {
+          btn.className = 'filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer bg-white text-navy-800 border border-slate-200 hover:border-gold-400';
+        }
+      });
+      renderUnits();
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      const htmlEl = document.documentElement;
+      htmlEl.lang = lang;
+      htmlEl.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+      // Update language toggle buttons
+      document.querySelectorAll('.lang-btn-label').forEach((el) => {
+        el.textContent = lang === 'ar' ? 'EN' : 'عربي';
+      });
+
+      // Update text content
+      const dict = i18n[lang];
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (dict[key]) el.setAttribute('placeholder', dict[key]);
+      });
+
+      populateDropdowns();
+      renderUnits();
+      renderReviews();
+    }
+
+    function toggleLanguage() {
+      applyLanguage(currentLang === 'ar' ? 'en' : 'ar');
+    }
+
+    // =========================================================================
+    // 6. MODALS & BOOKING INTERACTIONS
+    // =========================================================================
+    function openUnitModal(unitId) {
+      const unit = unitsData.find((u) => u.id === unitId);
+      if (!unit) return;
+      const info = unit[currentLang];
+      const t = i18n[currentLang];
+
+      const imgEl = document.getElementById('modalUnitImg');
+      imgEl.src = unit.image;
+      imgEl.onerror = function () {
+        this.onerror = null;
+        this.src = unit.fallback;
+      };
+
+      document.getElementById('modalUnitBadge').textContent = info.badge;
+      document.getElementById('modalUnitTitle').textContent = info.title;
+      document.getElementById('modalUnitCategory').textContent = info.categoryLabel;
+      document.getElementById('modalUnitArea').textContent = `${unit.area} ${t.unit_sqm}`;
+      document.getElementById('modalUnitGuests').textContent = `${unit.guests} ${t.unit_guests}`;
+      document.getElementById('modalUnitBeds').textContent = `${unit.beds} ${unit.beds === 1 ? t.unit_bed_single : t.unit_beds}`;
+      document.getElementById('modalUnitDesc').textContent = info.desc;
+
+      document.getElementById('modalUnitFeatures').innerHTML = info.features
+        .map(
+          (feat) => `
+          <li class="flex items-center gap-2">
+            <span class="w-5 h-5 rounded-full bg-gold-500/15 text-gold-600 flex items-center justify-center shrink-0">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <span>${feat}</span>
+          </li>`
+        )
+        .join('');
+
+      document.getElementById('modalQuickBookBtn').onclick = () => {
+        closeUnitModal();
+        selectUnitForBooking(unit.id);
+      };
+
+      const modal = document.getElementById('unitModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeUnitModal() {
+      const modal = document.getElementById('unitModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function selectUnitForBooking(unitId) {
+      document.getElementById('bkUnit').value = unitId;
+      document.getElementById('qbUnit').value = unitId;
+      document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+      showToast(i18n[currentLang].toast_unit_selected);
+    }
+
+    function handleQuickBooking(e) {
+      e.preventDefault();
+      const unitId = document.getElementById('qbUnit').value;
+      const checkIn = document.getElementById('qbCheckIn').value;
+      const checkOut = document.getElementById('qbCheckOut').value;
+      const guestsIdx = document.getElementById('qbGuests').selectedIndex;
+
+      document.getElementById('bkUnit').value = unitId;
+      document.getElementById('bkCheckIn').value = checkIn;
+      document.getElementById('bkCheckOut').value = checkOut;
+      document.getElementById('bkGuests').selectedIndex = guestsIdx;
+
+      document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        document.getElementById('bkName').focus();
+      }, 600);
+      showToast(i18n[currentLang].toast_quick_filled);
+    }
+
+    function handleMainBooking(e) {
+      e.preventDefault();
+      const errorBanner = document.getElementById('formErrorBanner');
+      const errorText = document.getElementById('formErrorText');
+      errorBanner.classList.add('hidden');
+
+      const name = document.getElementById('bkName').value.trim();
+      const phone = document.getElementById('bkPhone').value.trim();
+      const unitId = document.getElementById('bkUnit').value;
+      const guestsText = document.getElementById('bkGuests').options[document.getElementById('bkGuests').selectedIndex].text;
+      const checkIn = document.getElementById('bkCheckIn').value;
+      const checkOut = document.getElementById('bkCheckOut').value;
+      const notes = document.getElementById('bkNotes').value.trim();
+
+      if (!name || !phone || !checkIn || !checkOut) {
+        errorText.textContent = i18n[currentLang].err_required;
+        errorBanner.classList.remove('hidden');
+        return;
+      }
+
+      if (new Date(checkOut) <= new Date(checkIn)) {
+        errorText.textContent = i18n[currentLang].err_dates;
+        errorBanner.classList.remove('hidden');
+        return;
+      }
+
+      const unitObj = unitsData.find((u) => u.id === unitId);
+      const unitName = unitObj ? unitObj[currentLang].title : unitId;
+
+      if (currentLang === 'ar') {
+        currentWaMessageText =
+          `السلام عليكم ورحمة الله وبركاته،\n` +
+          `أرغب في تأكيد حجز لدى *ماريوت ذمار للشقق الفندقية*:\n\n` +
+          `👤 *الاسم:* ${name}\n` +
+          `📱 *رقم التواصل:* ${phone}\n` +
+          `🏨 *الوحدة المطلوبة:* ${unitName}\n` +
+          `📅 *تاريخ الوصول:* ${checkIn}\n` +
+          `📅 *تاريخ المغادرة:* ${checkOut}\n` +
+          `👥 *عدد النزلاء:* ${guestsText}` +
+          (notes ? `\n📝 *ملاحظات:* ${notes}` : '') +
+          `\n\nبانتظار ردكم لتأكيد التوفر والسعر، وشكراً لكم.`;
+      } else {
+        currentWaMessageText =
+          `Hello Marriott Dhamar Hotel Apartments,\n` +
+          `I would like to request a reservation:\n\n` +
+          `👤 *Full Name:* ${name}\n` +
+          `📱 *Phone:* ${phone}\n` +
+          `🏨 *Unit Type:* ${unitName}\n` +
+          `📅 *Check-in:* ${checkIn}\n` +
+          `📅 *Check-out:* ${checkOut}\n` +
+          `👥 *Guests:* ${guestsText}` +
+          (notes ? `\n📝 *Notes:* ${notes}` : '') +
+          `\n\nPlease confirm availability and rates. Thank you!`;
+      }
+
+      document.getElementById('waPreviewText').textContent = currentWaMessageText;
+      const encodedMsg = encodeURIComponent(currentWaMessageText);
+      document.getElementById('waDirectLink').href = `https://wa.me/${HOTEL_WHATSAPP_NUMBER}?text=${encodedMsg}`;
+
+      const modal = document.getElementById('waModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWaModal() {
+      const modal = document.getElementById('waModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function copyWaMessage() {
+      try {
+        const tempArea = document.createElement('textarea');
+        tempArea.value = currentWaMessageText;
+        tempArea.style.position = 'fixed';
+        tempArea.style.opacity = '0';
+        document.body.appendChild(tempArea);
+        tempArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempArea);
+        showToast(i18n[currentLang].toast_copied);
+      } catch (err) {
+        console.error('Copy failed:', err);
+      }
+    }
+
+    function closeModalOnBackdrop(event, modalId) {
+      if (event.target.id === modalId) {
+        if (modalId === 'unitModal') closeUnitModal();
+        if (modalId === 'waModal') closeWaModal();
+      }
+    }
+
+    // =========================================================================
+    // 7. MOBILE MENU, TOAST & INITIALIZATION
+    // =========================================================================
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const openIcon = document.getElementById('menuIconOpen');
+      const closeIcon = document.getElementById('menuIconClose');
+      const isHidden = menu.classList.contains('hidden');
+
+      menu.classList.toggle('hidden');
+      openIcon.classList.toggle('hidden', isHidden);
+      closeIcon.classList.toggle('hidden', !isHidden);
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.add('hidden');
+      document.getElementById('menuIconOpen').classList.remove('hidden');
+      document.getElementById('menuIconClose').classList.add('hidden');
+    }
+
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3200);
+    }
+
+    function setDefaultDates() {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      const dayAfter = new Date(today);
+      dayAfter.setDate(today.getDate() + 3);
+
+      const format = (d) => d.toISOString().split('T')[0];
+      const minDate = format(today);
+
+      ['qbCheckIn', 'bkCheckIn'].forEach((id) => {
+        const el = document.getElementById(id);
+        el.min = minDate;
+        el.value = format(tomorrow);
+      });
+      ['qbCheckOut', 'bkCheckOut'].forEach((id) => {
+        const el = document.getElementById(id);
+        el.min = minDate;
+        el.value = format(dayAfter);
+      });
+    }
+
+    function initScrollReveal() {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    }
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeUnitModal();
+        closeWaModal();
+      }
+    });
+
+    // Boot application
+    document.addEventListener('DOMContentLoaded', () => {
+      setDefaultDates();
+      applyLanguage('ar');
+      initScrollReveal();
+    });
+  </script>
+</body>
+</html>
